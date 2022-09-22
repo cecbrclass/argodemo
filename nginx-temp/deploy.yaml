@@ -1,0 +1,83 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-client
+provisioner: kubernetes.io/no-provisioner
+allowVolumeExpansion: false
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: task-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: nfs-client
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/tmp"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sc-nfs-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs-client
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sc-nginx
+  name: sc-nfs-nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sc-nginx
+  template:
+    metadata:
+      labels:
+        app: sc-nginx
+    spec:
+      volumes:
+      - name: nfs-test
+        persistentVolumeClaim:
+          claimName: sc-nfs-pvc
+      containers:
+      - image: ezmeralreg.cec.dev.br/cecbr/nginx:3.0
+        name: nginx
+        volumeMounts:
+        - name: nfs-test
+          mountPath: /usr/share/nginx/html
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: sc-nfs-nginx
+  labels:
+    app: sc-nginx
+spec:
+  type: NodePort
+  selector:
+    app: sc-nginx
+  ports:
+    - protocol: TCP
+      targetPort: 80
+      port: 80
+      nodePort: 30183
