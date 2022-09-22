@@ -1,3 +1,3 @@
 FROM docker.io/nginx
-RUN wget https://raw.githubusercontent.com/cecbrclass/argodemo/main/app/index.html
-COPY index.html /usr/share/nginx/html
+RUN curl https://raw.githubusercontent.com/cecbrclass/argodemo/main/app/index.html > index.html
+RUN cp /index.html /usr/share/nginx/html/index.html
