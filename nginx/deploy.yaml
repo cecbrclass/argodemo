@@ -53,16 +53,10 @@ spec:
       labels:
         app: sc-nginx
     spec:
-      volumes:
-      - name: nfs-test
-        persistentVolumeClaim:
-          claimName: sc-nfs-pvc
       containers:
       - image: ezmeralreg.cec.dev.br/cecbr/nginx:3.0
         name: nginx
-        volumeMounts:
-        - name: nfs-test
-          mountPath: /usr/share/nginx/html
+        
 
 ---
 
