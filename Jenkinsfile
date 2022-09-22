@@ -12,7 +12,7 @@ pipeline {
         stage ('Push Image'){
             steps {
                  script {
-                    docker.withRegistry('https://ezmeralreg.cec.dev.br', 'CECBR')
+                    docker.withRegistry('https://ezmeralreg.cec.dev.br', cecbr')
                     dockerapp.push('latest')
                     dockerapp.push('${env.BUILD_ID}')
                 }
