@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'Starting Pipeline'
                 script {
-                    dockerapp = docker.build("ezmeralreg.cec.dev.br/cecbr/nginx", '-f .src/Dockerfile ./src')
+                    dockerapp = docker.build("ezmeralreg.cec.dev.br/cecbr/nginx", '-f ./src/Dockerfile ./src')
                 }
             }
         }
