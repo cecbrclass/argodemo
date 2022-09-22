@@ -54,7 +54,7 @@ spec:
         app: sc-nginx
     spec:
       containers:
-      - image: ezmeralreg.cec.dev.br/cecbr/nginx:27
+      - image: ezmeralreg.cec.dev.br/cecbr/nginx:29
         name: nginx
         
 
