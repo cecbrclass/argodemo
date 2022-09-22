@@ -58,7 +58,7 @@ spec:
         persistentVolumeClaim:
           claimName: sc-nfs-pvc
       containers:
-      - image: ezmeralreg.cec.dev.br/cecbr/nginx
+      - image: nginx
         name: nginx
         volumeMounts:
         - name: nfs-test
