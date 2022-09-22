@@ -44,7 +44,7 @@ metadata:
     app: sc-nginx
   name: sc-nfs-nginx
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: sc-nginx
