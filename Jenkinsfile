@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('Inicial'){
             steps {
-                echo 'Starting Pipeline'
+                echo 'Starting Pipeline 1'
             }
         }
     }
