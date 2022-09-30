@@ -2,9 +2,9 @@ pipeline {
     agent any
     stages {
         stage ('Build Image'){
-            sh 'sed -i "s/DEMO/${env.BUILD_ID}/g" ./app/index.html'
             steps {
                 echo 'Starting Pipeline'
+                sh 'sed -i "s/DEMO/${env.BUILD_ID}/g" ./app/index.html'
                 script {
                     dockerapp = docker.build("ezmeralreg.cec.dev.br/cecbr/nginx:${env.BUILD_ID}", '-f ./src/Dockerfile ./src')
                 }
