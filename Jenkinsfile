@@ -25,7 +25,7 @@ pipeline {
             }
             steps {
                  withKubeConfig([credentialsId: 'kubeconfigfile']){
-                    sh 'sed -i "s/{{tag}}/$tag_version/g ./nginx/deploy.yaml"'
+                    sh 'sed -i "s/{{tag}}/$tag_version/g" ./nginx/deploy.yaml'
                     sh 'kubectl apply -f ./nginx/deploy.yaml'
                 }
             }
