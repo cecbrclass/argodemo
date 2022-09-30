@@ -2,6 +2,7 @@ pipeline {
     agent any
     stages {
         stage ('Build Image'){
+            sh 'sed -i "s/DEMO/${env.BUILD_ID}/g" ./app/index.html'
             steps {
                 echo 'Starting Pipeline'
                 script {
