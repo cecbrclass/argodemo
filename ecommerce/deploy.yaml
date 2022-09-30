@@ -632,7 +632,7 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis:alpine
+        image: ezmeralreg.cec.dev.br/ecommerce/redis:alpine
         ports:
         - containerPort: 6379
         readinessProbe:
