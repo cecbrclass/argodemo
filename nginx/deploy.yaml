@@ -44,7 +44,7 @@ metadata:
     app: sc-nginx
   name: sc-nfs-nginx
 spec:
-  replicas: 5
+  replicas: 2
   selector:
     matchLabels:
       app: sc-nginx
@@ -54,7 +54,7 @@ spec:
         app: sc-nginx
     spec:
       containers:
-      - image: ezmeralreg.cec.dev.br/cecbr/nginx:35
+      - image: ezmeralreg.cec.dev.br/cecbr/nginx:2.0
         name: nginx
         
 
