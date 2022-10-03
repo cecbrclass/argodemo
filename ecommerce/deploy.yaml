@@ -191,7 +191,7 @@ spec:
   selector:
     matchLabels:
       app: frontend
-  replicas: 2   
+  replicas: 5
   template:
     metadata:
       labels:
