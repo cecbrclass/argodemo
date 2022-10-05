@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('Build Image'){
             steps {
-                echo 'Starting Pipeline'
+                echo 'Starting Pipeline Demo'
                  script {
                     dockerapp = docker.build("ezmeralreg.cec.dev.br/cecbr/nginx:${env.BUILD_ID}", '-f ./src/Dockerfile ./src')
                 }
