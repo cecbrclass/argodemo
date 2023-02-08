@@ -15,7 +15,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: harbor.cec.dev.br/ecommerce/emailservice
+        image: harbor.cec.dev.br/ecommerce/emailservice:v0.3.6
         ports:
         - containerPort: 8080
         env:
