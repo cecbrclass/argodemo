@@ -70,7 +70,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: harbor.cec.dev.br/ecommerce/checkoutservice
+          image: harbor.cec.dev.br/ecommerce/checkoutservice:v0.3.6
           ports:
           - containerPort: 5050
           readinessProbe:
