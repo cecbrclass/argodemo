@@ -265,6 +265,7 @@ spec:
   type: ClusterIP
   selector:
     app: frontend
+  replicas: 3
   ports:
   - name: http
     port: 80
