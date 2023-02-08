@@ -140,7 +140,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: harbor.cec.dev.br/ecommerce/recommendationservice
+        image: harbor.cec.dev.br/ecommerce/recommendationservice:v0.3.6
         ports:
         - containerPort: 8080
         readinessProbe:
