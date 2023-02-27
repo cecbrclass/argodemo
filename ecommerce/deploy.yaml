@@ -191,6 +191,7 @@ spec:
   selector:
     matchLabels:
       app: frontend
+    replicas: 2
   template:
     metadata:
       labels:
@@ -265,7 +266,6 @@ spec:
   type: ClusterIP
   selector:
     app: frontend
-  replicas: 2
   ports:
   - name: http
     port: 80
