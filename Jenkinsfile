@@ -5,14 +5,14 @@ pipeline {
             steps {
                 echo 'Starting Pipeline Demo'
                  script {
-                    dockerapp = docker.build("ezmeralreg.cec.dev.br/cecbr/nginx:${env.BUILD_ID}", '-f ./src/Dockerfile ./src')
+                    dockerapp = docker.build("harbor.cec.dev.br/ezmeral/nginx:${env.BUILD_ID}", '-f ./src/Dockerfile ./src')
                 }
             }
         }
         stage ('Push Image'){
             steps {
                  script {
-                    docker.withRegistry('https://ezmeralreg.cec.dev.br', 'cecbr'){
+                    docker.withRegistry('https://harbor.cec.dev.br', 'ezmeral'){
                     dockerapp.push('latest')
                     dockerapp.push("${env.BUILD_ID}")
                     }
