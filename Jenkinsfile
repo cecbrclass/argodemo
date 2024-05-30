@@ -12,7 +12,7 @@ pipeline {
         stage ('Push Image'){
             steps {
                  script {
-                    docker.withRegistry('https://harbor.lab.local', 'labuser'){
+                    docker.withRegistry('https://harbor.lab.local', 'cd6dc7db-b892-47ef-8256-167c9eeea15d'){
                     dockerapp.push('latest')
                     dockerapp.push("${env.BUILD_ID}")
                     }
