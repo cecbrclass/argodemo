@@ -1,42 +1,3 @@
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: nfs-client
-provisioner: kubernetes.io/no-provisioner
-allowVolumeExpansion: false
-reclaimPolicy: Delete
-volumeBindingMode: WaitForFirstConsumer
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: task-pv-volume
-  labels:
-    type: local
-spec:
-  storageClassName: nfs-client
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/tmp"
-
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: sc-nfs-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: nfs-client
-  resources:
-    requests:
-      storage: 1Gi
-
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -54,7 +15,7 @@ spec:
         app: sc-nginx
     spec:
       containers:
-      - image: harbor.cec.dev.br/cecbr/nginx:{{tag}}
+      - image: harbor.lab.local/ezmeral/nginx:{{tag}}
         name: nginx
         
 
