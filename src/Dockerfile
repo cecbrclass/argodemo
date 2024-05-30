@@ -1,1 +1,1 @@
-FROM harbor.cec.dev.br/ezmeral/nginx
+FROM harbor.lab.local/ezmeral/nginx
