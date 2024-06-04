@@ -14,15 +14,18 @@ spec:
       labels:
         app: sc-nginx
     spec:
-	  volumes:
+      volumes:
         - name: nfs-nginx
           persistentVolumeClaim:
             claimName: nfs-pvc
       containers:
-      - image: harbor.lab.local/ezmeral/nginx:{{tag}}
-        name: nginx
-		mountPath: /usr/share/nginx/html
-		
+        - image: harbor.lab.local/ezmeral/nginx:latest
+          name: nginx
+          volumeMounts:
+            - name: nfs-nginx
+              mountPath: /usr/share/nginx/html
+
+
 ---
 
 apiVersion: v1
