@@ -16,7 +16,7 @@ spec:
     spec:
       volumes:
       -  name: nfs-nginx
-          persistentVolumeClaim:
+           persistentVolumeClaim:
             claimName: nfs-pvc
       containers:
       - image: harbor.lab.local/ezmeral/nginx:{{tag}}
