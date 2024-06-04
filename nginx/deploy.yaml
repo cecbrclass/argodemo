@@ -2,44 +2,52 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: sc-nginx
-  name: sc-nfs-nginx
+    app: nginx
+  name: nfs-nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sc-nginx
+      app: nginx
   template:
     metadata:
       labels:
-        app: sc-nginx
+        app: nginx
     spec:
       volumes:
-      -  name: nfs-nginx
-           persistentVolumeClaim:
+        - name: nfs-nginx
+          persistentVolumeClaim:
             claimName: nfs-pvc
       containers:
-      - image: harbor.lab.local/ezmeral/nginx:{{tag}}
-         name: nginx
+        - image: harbor.lab.local/ezmeral/nginx:latest
+          name: nginx
           volumeMounts:
             - name: nfs-nginx
               mountPath: /usr/share/nginx/html
-        
-      
----
 
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs-client
+  resources:
+    requests:
+      storage: 5Gi
+
+ apiVersion: v1
 kind: Service
 metadata:
-  name: sc-nfs-nginx
-  labels:
-    app: sc-nginx
+  name: nginx-service
 spec:
-  type: NodePort
-  selector:
-    app: sc-nginx
   ports:
-    - protocol: TCP
+    - port: 80
+      protocol: TCP
       targetPort: 80
-      port: 80
-      nodePort: 30183
+      nodePort: 32001
+      name: http
+  selector:
+    app: nginx
+  type: NodePort  
