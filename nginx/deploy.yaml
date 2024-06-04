@@ -22,7 +22,7 @@ spec:
       - image: harbor.lab.local/ezmeral/nginx:{{tag}}
         name: nginx
 		mountPath: /usr/share/nginx/html
-
+		
 ---
 
 apiVersion: v1
